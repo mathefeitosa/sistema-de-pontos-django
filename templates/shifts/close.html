@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+{% for shift in shifts %}
+<form action="{% url 'close_shift_id' shift.id %}"
+    method="post">
+    {% csrf_token %}
+    <p>{{shift.workplace.name}} | {{shift.owner.profile.name}} | <button type="submit">Fechar ponto</button></p>
+</form>
+{% endfor %}
+{% endblock content %}

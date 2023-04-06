@@ -24,23 +24,23 @@ class Shift(models.Model):
         auto_now=False, auto_now_add=True, verbose_name="Início"
     )
     end = models.DateTimeField(
-        default=None, auto_now=False, auto_now_add=False, verbose_name="Fim", null=True
+        default=None, auto_now=False, auto_now_add=False, verbose_name="Fim", null=True, blank=True
     )
     begin_position = models.CharField(
         max_length=200, verbose_name="Posição no início")
     end_position = models.CharField(
-        max_length=200, verbose_name="Posição no fim")
+        max_length=200, verbose_name="Posição no fim", blank=True)
     begin_photo = models.ImageField(
-        upload_to="static/shift_photos", verbose_name="Foto de entrada"
+        upload_to="static/shift_photos", verbose_name="Foto de entrada", blank=True, null=True
     )
     end_photo = models.ImageField(
-        upload_to="static/shift_photos", verbose_name="Foto de saída"
+        upload_to="static/shift_photos", verbose_name="Foto de saída", blank=True, null=True
     )
     is_open = models.BooleanField(
         default=True, verbose_name="Ponto está em aberto?")
 
     def __str__(self):
-        return str(f"{self.owner} | {self.workplace} | {self.begin.date()}")
+        return f"{self.is_open} | {self.begin.ctime()} | {self.workplace.name} | {self.owner.username}"
 
 
 @receiver(pre_delete, sender=Shift)

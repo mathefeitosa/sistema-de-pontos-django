@@ -10,12 +10,44 @@
   <title>Sistema de Pontos</title>
 </head>
 {% if user %}
-{{user}}
+{{user.profile.name}}
 {% endif%}
 <hr />
 
 <body>
   {% block content %} {% endblock%}
 </body>
+<script>
+  // Exemplo de código JavaScript para obter a geolocalização do dispositivo do usuário
+  // e preencher o campo "begin_position" do formulário
+
+  // Função para obter a geolocalização
+  function getGeolocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  }
+
+  // Função de callback de sucesso para obter a geolocalização
+  function successCallback(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const beginPositionInput = document.getElementById('id_begin_position');  // Use o id do campo "begin_position" do seu formulário
+    if (beginPositionInput) {
+      beginPositionInput.value = `${latitude},${longitude}`;
+    }
+  }
+
+  // Função de callback de erro para obter a geolocalização
+  function errorCallback(error) {
+    console.error('Error getting geolocation:', error);
+  }
+
+  // Chame a função para obter a geolocalização
+  getGeolocation();
+  console.log('teste')
+</script>
 
 </html>

@@ -6,30 +6,33 @@ from profiles.forms import ProfileForm
 from .models import Profile
 
 # Create your views here.
+
+
 def login_page(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        
+
         try:
             user = User.objects.get(username=username)
         except:
             print('Usuário não existe!')
-        
-        user = authenticate(request, username=username,password=password)
+
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('profiles')
     return render(request, 'login.html')
 
-def logou_user(request):
+
+def logout_user(request):
     logout(request)
     return redirect('profiles')
 
 
 def profiles(request):
     profiles = Profile.objects.all()
-    return render(request, 'profiles/profiles_list.html', {'profiles':profiles})
+    return render(request, 'profiles/profiles_list.html', {'profiles': profiles})
 
 
 def create_profile(request):
