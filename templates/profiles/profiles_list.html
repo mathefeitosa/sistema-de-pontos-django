@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<h3>Usuários</h3>
 {% for profile in profiles %}
-<p>{{profile.cpf}}</p>
+<p>{{profile.name}} | CRM-{{profile.crm_state}} {{profile.crm_number}} | {{profile.cpf}} |
+    {{profile.created|date:"d/m/Y"}}
+</p>
 {% endfor %}
 {% endblock content %}

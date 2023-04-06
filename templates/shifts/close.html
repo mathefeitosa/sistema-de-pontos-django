@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<h3>Turnos</h3>
 {% for shift in shifts %}
 <form action="{% url 'close_shift_id' shift.id %}"
     method="post">

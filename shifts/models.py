@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import pre_delete
 from workplaces.models import Workplace
-
+from django.utils import timezone
 
 # Create your models here.
+
+
 class Shift(models.Model):
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, editable=False, primary_key=True
@@ -20,9 +22,9 @@ class Shift(models.Model):
         null=True,
         verbose_name="Local de trabalho",
     )
-    begin = models.DateTimeField(
-        auto_now=False, auto_now_add=True, verbose_name="Início"
-    )
+    begin = models.DateTimeField(auto_now_add=True,
+                                 verbose_name="Início", editable=False
+                                 )
     end = models.DateTimeField(
         default=None, auto_now=False, auto_now_add=False, verbose_name="Fim", null=True, blank=True
     )

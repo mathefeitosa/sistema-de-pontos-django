@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h3>Abrir turno</h3>
 {% csrf_token %}
 <form action=""
-    method="post">
+    method="post"
+    enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Criar</button>

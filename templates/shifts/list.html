@@ -9,9 +9,10 @@
 <form action="{% url 'close_shift_id' shift.id %}"
     method="post">
     {% csrf_token %}
-    <p>{{shift.begin|date:"d/m/Y m:s"}} |
+    <p>{{shift.begin|date:"d/m/Y H:i:s"}} -->
+        {% if shift.end %} {{shift.end|date:"d/m/Y H:i:s"}} {% else %} Aberto {% endif %}
+        |
         {{shift.owner.profile.name}} |
-        {% if shift.is_open %} Aberto {% else %} Fechado {% endif %} |
         {{shift.workplace.name}} |
         <button type="submit">Fechar ponto</button>
     </p>

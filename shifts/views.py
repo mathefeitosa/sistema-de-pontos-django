@@ -1,21 +1,20 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
-
+from django.utils import timezone
 from .forms import ShiftForm
-
 from .models import Shift
 
 # Create your views here.
 
 
 def shifts(request):
-    shifts = Shift.objects.all()
+    shifts = Shift.objects.order_by('begin')
     return render(request, 'shifts/list.html', {'shifts': shifts})
 
 
 def create_shift(request):
     if request.method == "POST":
-        form = ShiftForm(request.POST)
+        form = ShiftForm(request.POST, request.FILES)
         if form.is_valid():
             shift = form.save()
             print('Shift salvo!')
@@ -35,8 +34,11 @@ def close_shift(request):
 
 def close_shift_id(request, id):
     shift = Shift.objects.get(id=id)
+    if not shift.is_open:
+        return HttpResponse('O ponto já está fechado!')
     if shift:
         shift.is_open = False
+        shift.end = timezone.now()
         shift.save()
         print(shift)
         return redirect('shifts')
