@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% for profile in profiles %}
+<p>{{profile.cpf}}</p>
+{% endfor %}
+{% endblock content %}

@@ -9,6 +9,10 @@
     content="width=device-width, initial-scale=1.0">
   <title>Sistema de Pontos</title>
 </head>
+{% if user %}
+{{user}}
+{% endif%}
+<hr />
 
 <body>
   {% block content %} {% endblock%}
