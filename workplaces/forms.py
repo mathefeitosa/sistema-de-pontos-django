@@ -1,8 +1,15 @@
 from django import forms
-from .models import Workplaces
+from .models import Workplace
 
 
-class WorkplacesForm(forms.ModelForm):
+class WorkplaceForm(forms.ModelForm):
     class Meta:
-        model = Workplaces
-        fields = ["owner", "name", "address", 'location', 'turn_size_hours', 'hour_price']
+        model = Workplace
+        fields = [
+            "owner",
+            "name",
+            "address",
+            "location",
+            "turn_size_hours",
+            "hour_price",
+        ]

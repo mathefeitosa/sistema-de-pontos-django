@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Workplaces
+from .models import Workplace
 
 # Register your models here.
-admin.site.register(Workplaces)
+admin.site.register(Workplace)
