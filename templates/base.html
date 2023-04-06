@@ -38,15 +38,16 @@
             href="{% url 'workplaces' %}">Lugares</a>
           <a class="nav-link"
             href="{% url 'shifts' %}">Turnos</a>
-          <button class="btn btn-outline-danger"
-            type="submit">Logout</button>
+          <a href="{% url 'logout' %}"
+            class="btn btn-outline-danger"
+            type="submit">Logout</a>
         </div>
       </div>
     </div>
 
   </nav>
   <div>
-    {% if user %}
+    {% if user.is_authenticated %}
     Olá, {{user.profile.name}}
     {% endif%}
   </div>

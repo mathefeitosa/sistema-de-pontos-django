@@ -13,6 +13,7 @@ class Workplace(models.Model):
     owner = models.ForeignKey(
         User, verbose_name='Trabalhador',  on_delete=models.SET_NULL, null=True)
     name = models.CharField(verbose_name='Nome do local', max_length=200)
+    team = models.CharField(verbose_name='Equipe', max_length=200)
     address = models.CharField(verbose_name='Endereço', max_length=200)
     location = models.CharField(verbose_name='Localização', max_length=200)
     turn_size_hours = models.IntegerField(verbose_name='Horas diárias')

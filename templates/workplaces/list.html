@@ -1,7 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for workplace in workplaces %}
-<p>{{workplace.name}}</p>
-{% endfor %}
+<h3>Locais</h3>
+<a href="{% url 'create_workplace' %}"
+    class="btn btn-success">Novo lugar</a>
+
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Equipe</th>
+            <th scope="col">Trabalhador</th>
+            <th scope="col">Valor/hora</th>
+            <th scope="col">Turno</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for workplace in workplaces %}
+        <tr>
+            <td>{{workplace.name}}</td>
+            <td>{{workplace.team}}</td>
+            <td>{{workplace.owner.profile.name}}</td>
+            <td>R$ {{workplace.hour_price}}</td>
+            <td>{{workplace.turn_size_hours}} horas</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

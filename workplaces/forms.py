@@ -8,6 +8,7 @@ class WorkplaceForm(forms.ModelForm):
         fields = [
             "owner",
             "name",
+            "team",
             "address",
             "location",
             "turn_size_hours",
