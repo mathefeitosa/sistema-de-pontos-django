@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+
 import uuid
 
 # CONSTANTES
@@ -34,13 +35,17 @@ STATE_CHOICES = (
 )
 
 # MODELOS
-class profile(models.Model):
+class Profile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
     name = models.CharField(max_length=200)
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(max_length=11, editable=False)
     crm_number = models.CharField(max_length=20)
     crm_state = models.CharField(max_length=2, choices=STATE_CHOICES)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.cpf)
