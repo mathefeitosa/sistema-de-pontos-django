@@ -14,18 +14,19 @@
             <th scope="col">Fim</th>
             <th scope="col">Pessoa</th>
             <th scope="col">Local</th>
-            <th scope="col">Ação</th>
+            <th scope="col">Fechar</th>
         </tr>
     </thead>
     <tbody>
         {% for shift in shifts %}
-        <tr>
+        <tr class="bg-{% if shift.is_open %}danger{% else %}success{% endif %}-subtle">
             <th>{{shift.begin|date:"d/m/Y"}}</th>
             <td>{{shift.begin|date:"H:i:s"}}</td>
             <td>{{shift.end|date:"H:i:s"}}</td>
             <td>{{shift.owner_profile.full_name}}</td>
             <td>{{shift.workplace.name}}</td>
             <td>
+                {% if shift.is_open %}
                 <form action="{% url 'close_shift_id' shift.id %}"
                     method="post">
                     {% csrf_token %}
@@ -33,6 +34,7 @@
                         class="btn btn-outline-danger">Fechar ponto
                     </button>
                 </form>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
