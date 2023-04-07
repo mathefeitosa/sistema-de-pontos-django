@@ -3,22 +3,39 @@
 {% if shifts|length == 0 %}
 <p>Nenhum ponto para esse usuário.</p>
 {% endif %}
-{% for shift in shifts %}
+<h3>Turnos</h3>
 
-
-<form action="{% url 'close_shift_id' shift.id %}"
-    method="post">
-    {% csrf_token %}
-    <p>{{shift.begin|date:"d/m/Y H:i:s"}} -->
-        {% if shift.end %} {{shift.end|date:"d/m/Y H:i:s"}} {% else %} Aberto {% endif %}
-        |
-        {{shift.owner.profile.name}} |
-        {{shift.workplace.name}} |
-        <button type="submit">Fechar ponto</button>
-    </p>
-
-</form>
-
-
-{% endfor %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Dia</th>
+            <th scope="col">Início</th>
+            <th scope="col">Fim</th>
+            <th scope="col">Pessoa</th>
+            <th scope="col">Local</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for shift in shifts %}
+            <th>{{shift.begin|date:"d/m/Y"}}</th>
+            <td>{{shift.begin|date:"H:i:s"}}</td>
+            <td>{{shift.end|date:"H:i:s"}}</td>
+            <td>{{shift.end|date:"H:i:s"}}</td>
+            <td>{{shift.owner.profile.name}}</td>
+            <td>{{shift.workplace.name}}</td>
+            <td>
+                <form action="{% url 'close_shift_id' shift.id %}"
+                    method="post">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="btn btn-outline-danger">Fechar ponto
+                    </button>
+                </form>
+            </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
 {% endblock content %}

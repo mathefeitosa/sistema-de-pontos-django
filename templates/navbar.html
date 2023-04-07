@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- BRAND -->
+        <a class="navbar-brand"
+            href="#">Pontos
+        </a>
+
+        <!-- LINKS -->
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link"
+                    aria-current="page"
+                    href="{% url 'profiles' %}">Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="{% url 'workplaces' %}">Locais</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="{% url 'shifts' %}">Turnos</a>
+            </li>
+        </ul>
+
+        <!-- LOGOUT -->
+        <a href="{% url 'logout' %}"
+            class="btn btn-outline-danger"
+            type="submit">Logout</a>
+    </div>
+</nav>
