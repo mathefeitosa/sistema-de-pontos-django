@@ -6,18 +6,18 @@ from .models import Workplace
 
 
 def workplaces(request):
-    workplaces = Workplace.objects.all()
-    return render(request, "workplaces/list.html", {"workplaces": workplaces})
+  workplaces = Workplace.objects.all()
+  return render(request, "workplaces/list.html", {"workplaces": workplaces})
 
 
 def create_workplace(request):
-    if request.method == "POST":
-        form = WorkplaceForm(request.POST)
-        if form.is_valid():
-            workplace = form.save()
-            print("Workplace salvo!")
-            return redirect("workplaces")
+  if request.method == "POST":
+    form = WorkplaceForm(request.POST)
+    if form.is_valid():
+      workplace = form.save()
+      print("Workplace salvo!")
+      return redirect("workplaces")
 
-    else:
-        form = WorkplaceForm()
-        return render(request, "workplaces/create.html", {"form": form})
+  else:
+    form = WorkplaceForm()
+    return render(request, "workplaces/create.html", {"form": form})
