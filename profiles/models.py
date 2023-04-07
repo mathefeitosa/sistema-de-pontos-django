@@ -40,15 +40,40 @@ STATE_CHOICES = (
 class Profile(models.Model):
 
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True)
-    id = models.UUIDField(
-        default=uuid.uuid4, unique=True, primary_key=True, editable=False
+        User, on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name='Usuário',
     )
-    full_name = models.CharField(max_length=200)
-    cpf = models.CharField(max_length=11, editable=False)
-    crm_number = models.CharField(max_length=20)
-    crm_state = models.CharField(max_length=2, choices=STATE_CHOICES)
-    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+        editable=False,
+    )
+    full_name = models.CharField(
+        max_length=200,
+        verbose_name='Nome completo',
+    )
+    cpf = models.CharField(
+        max_length=11,
+        editable=False,
+        verbose_name='CPF',
+    )
+    crm_number = models.CharField(
+        max_length=20,
+        verbose_name='Número do CRM',
+    )
+    crm_state = models.CharField(
+        max_length=2,
+        choices=STATE_CHOICES,
+        verbose_name='Estado do CRM',
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        verbose_name='Data de criação',
+    )
 
     def __str__(self):
         return str(self.full_name)

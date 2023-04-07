@@ -2,6 +2,8 @@
 {% block content %}
 
 <h3>Usuários</h3>
+<a href="{% url 'create_user' %}"
+    class="btn btn-success">Novo Usuário</a>
 
 <table class="table">
     <thead>
@@ -20,6 +22,16 @@
             <td>CRM-{{profile.crm_state}} {{profile.crm_number}}</td>
             <td>{{profile.cpf}}</td>
             <td>{{profile.created|date:"d/m/Y"}}</td>
+            <td>
+                <form action="{% url 'edit_profile' profile.id %}"
+                    method="get">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="btn btn-outline-info">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
