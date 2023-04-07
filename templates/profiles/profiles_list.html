@@ -1,9 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+
 <h3>Usuários</h3>
-{% for profile in profiles %}
-<p>{{profile.name}} | CRM-{{profile.crm_state}} {{profile.crm_number}} | {{profile.cpf}} |
-    {{profile.created|date:"d/m/Y"}}
-</p>
-{% endfor %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CRM</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Criação</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}
+        <tr>
+            <th scope="row">{{profile.name}}</th>
+            <td>CRM-{{profile.crm_state}} {{profile.crm_number}}</td>
+            <td>{{profile.cpf}}</td>
+            <td>{{profile.created|date:"d/m/Y"}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock content %}
