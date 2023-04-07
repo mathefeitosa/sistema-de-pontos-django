@@ -18,8 +18,8 @@
         </tr>
     </thead>
     <tbody>
+        {% for shift in shifts %}
         <tr>
-            {% for shift in shifts %}
             <th>{{shift.begin|date:"d/m/Y"}}</th>
             <td>{{shift.begin|date:"H:i:s"}}</td>
             <td>{{shift.end|date:"H:i:s"}}</td>
@@ -34,8 +34,8 @@
                     </button>
                 </form>
             </td>
-            {% endfor %}
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock content %}
