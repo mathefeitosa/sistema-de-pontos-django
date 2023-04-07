@@ -17,7 +17,7 @@ class Shift(models.Model):
     )
     workplace = models.ForeignKey(
         Workplace,
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
         null=False,
         verbose_name="Local de trabalho",
     )
