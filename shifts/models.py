@@ -13,12 +13,12 @@ class Shift(models.Model):
         default=uuid.uuid4, unique=True, editable=False, primary_key=True
     )
     owner_profile = models.ForeignKey(
-        Profile, verbose_name="Perfil do usuário", on_delete=models.SET_NULL, null=True
+        Profile, verbose_name="Perfil do usuário", on_delete=models.PROTECT, null=True
     )
     workplace = models.ForeignKey(
         Workplace,
         on_delete=models.SET_NULL,
-        null=True,
+        null=False,
         verbose_name="Local de trabalho",
     )
     begin = models.DateTimeField(auto_now_add=True,
@@ -41,7 +41,10 @@ class Shift(models.Model):
         default=True, verbose_name="Ponto está em aberto?")
 
     def __str__(self):
-        return f"{self.is_open} | {self.begin.ctime()} | {self.workplace.name} | {self.owner_profile.full_name}"
+        if self.owner_profile:
+            return f"{self.is_open} | {self.begin.ctime()} | {self.workplace.name} | {self.owner_profile.full_name}"
+        else:
+            return f"{self.is_open} | {self.begin.ctime()} | {self.workplace.name} | ???"
 
 
 @receiver(pre_delete, sender=Shift)
