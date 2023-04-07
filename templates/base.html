@@ -16,11 +16,7 @@
 
 <body>
   {% include "navbar.html" %}
-  <div>
-    {% if user.is_authenticated %}
-    Olá, {{user.profile.name}}
-    {% endif%}
-  </div>
+
   <div class="container-fluid">
     {% block content %} {% endblock%}
   </div>
