@@ -5,7 +5,7 @@
 <form action="{% url 'close_shift_id' shift.id %}"
     method="post">
     {% csrf_token %}
-    <p>{{shift.workplace.name}} | {{shift.owner.profile.name}} | <button type="submit">Fechar ponto</button></p>
+    <p>{{shift.workplace.name}} | {{shift.owner_profile.full_name}} | <button type="submit">Fechar ponto</button></p>
 </form>
 {% endfor %}
 {% endblock content %}

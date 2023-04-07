@@ -1,7 +1,7 @@
 from django.db import models
 from decimal import Decimal
+from profiles.models import Profile
 import uuid
-from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,8 +10,9 @@ class Workplace(models.Model):
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, editable=False, primary_key=True
     )
-    owner = models.ForeignKey(
-        User, verbose_name='Trabalhador',  on_delete=models.SET_NULL, null=True)
+    owner_profile = models.ForeignKey(
+        Profile, verbose_name="Perfil do usuário", on_delete=models.SET_NULL, null=True
+    )
     name = models.CharField(verbose_name='Nome do local', max_length=200)
     team = models.CharField(verbose_name='Equipe', max_length=200)
     address = models.CharField(verbose_name='Endereço', max_length=200)

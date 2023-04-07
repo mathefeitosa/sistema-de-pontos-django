@@ -6,7 +6,7 @@ class WorkplaceForm(forms.ModelForm):
     class Meta:
         model = Workplace
         fields = [
-            "owner",
+            "owner_profile",
             "name",
             "team",
             "address",

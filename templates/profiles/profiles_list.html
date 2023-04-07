@@ -16,7 +16,7 @@
     <tbody>
         {% for profile in profiles %}
         <tr>
-            <th scope="row">{{profile.name}}</th>
+            <th scope="row">{{profile.full_name}}</th>
             <td>CRM-{{profile.crm_state}} {{profile.crm_number}}</td>
             <td>{{profile.cpf}}</td>
             <td>{{profile.created|date:"d/m/Y"}}</td>

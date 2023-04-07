@@ -23,7 +23,7 @@
             <td>{{shift.begin|date:"H:i:s"}}</td>
             <td>{{shift.end|date:"H:i:s"}}</td>
             <td>{{shift.end|date:"H:i:s"}}</td>
-            <td>{{shift.owner.profile.name}}</td>
+            <td>{{shift.owner_profile.full_name}}</td>
             <td>{{shift.workplace.name}}</td>
             <td>
                 <form action="{% url 'close_shift_id' shift.id %}"
