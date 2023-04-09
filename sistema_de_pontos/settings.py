@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "profiles.apps.ProfilesConfig",
     "workplaces.apps.WorkplacesConfig",
     "shifts.apps.ShiftsConfig",
+    "django_crontab",
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# CRONJOBS
+CRONJOBS = [
+    ('*/1 * * * *', 'workplaces.tasks.test_message')
+]
